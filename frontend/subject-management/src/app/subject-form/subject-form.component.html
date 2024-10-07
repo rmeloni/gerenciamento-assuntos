@@ -1,0 +1,19 @@
+<form [formGroup]="subjectForm" (ngSubmit)="onSubmit()" class="mx-5">
+    <div class="form-group mb-2 mr-5">
+        <label for="title" class="sr-only">Título</label>
+        <input formControlName="title" placeholder="Título" required class="form-control col-10" />
+    </div>
+    <div class="form-group mb-2">
+        <label for="keywords" class="sr-only">Palavras Chaves</label>
+        <input formControlName="keywords" placeholder="Palavras Chaves" required class="form-control col-10" />
+    </div>
+    <div class="form-group mb-2">
+        <label for="status" class="sr-only">Palavras Chaves</label>
+        <select formControlName="status" class="form-control col-10">
+            <option value="Pendente" selected>Pendente</option>
+            <option value="Em Progresso">Em Progresso</option>
+            <option value="Concluído">Concluído</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary px-5 ml-5">Salvar</button>
+</form>

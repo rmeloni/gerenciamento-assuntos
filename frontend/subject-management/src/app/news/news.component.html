@@ -1,0 +1,24 @@
+<div class="news" *ngIf="subject">
+    <h2>Detalhes do Assunto</h2>
+    <p><strong>Título:</strong> {{ subject.title }}</p>
+    <p><strong>Palavras Chaves:</strong> {{ subject.keywords }}</p>
+    <p><strong>Status:</strong> {{ subject.status }}</p>
+
+    <ng-container *ngIf="subject && subject.links.length > 0; else noLinks">
+        <div class="col100 card">
+            <ul class="links list-group list-group-flush">
+                <li *ngFor="let item of subject.links" class="list-group-item">
+                    <a href="#" (click)="showNews(item)" class="card-link">{{ item }}</a>
+                </li>
+            </ul>
+
+        </div>
+    </ng-container>
+    <ng-template #noLinks>
+        <p>Nenhum link foi encontrado.</p>
+    </ng-template>
+    <button (click)="close()" class="btn btn-dark">Fechar</button>
+    <div *ngIf="selectedLink" [ngClass]="{'iframe': selectedLink}">
+        <iframe [src]="selectedLink" width="100%" height="400px"></iframe>
+    </div>
+</div>

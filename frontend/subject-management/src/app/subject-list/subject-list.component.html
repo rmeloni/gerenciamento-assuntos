@@ -1,0 +1,56 @@
+<h2 class="mt-5">Lista de Assuntos</h2>
+<button (click)="openModal()" class="btn btn-outline-dark my-4">Criar Novo Assunto</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Palavra chave</th>
+            <th scope="col">Status</th>
+            <th class="col-2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let subject of subjects; let i = index" (click)="showDetails(subject)">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ subject.title }}</td>
+            <td>{{ subject.keywords }}</td>
+            <td>
+                <!-- {{ subject.status }} -->
+                <select class="custom-select form-control" [(ngModel)]="subject.status"
+                    (change)="updateStatus(subject); $event.stopPropagation()">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Progresso">Em Progresso</option>
+                    <option value="Concluído">Concluído</option>
+                </select>
+            </td>
+            <td class="d-flex flex-row justify-content-between">
+                <button (click)="editSubject(subject); $event.stopPropagation()"
+                    class="btn btn-secondary">Editar</button>
+                <button (click)="deleteSubject(subject.id); $event.stopPropagation()"
+                    class="btn btn-danger">Deletar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        (pageChange)="loadSubjects()">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadSubjects()">
+        <option [ngValue]="2">2 itens por página</option>
+        <option [ngValue]="4">4 itens por página</option>
+        <option [ngValue]="6">6 itens por página</option>
+    </select>
+</div>
+
+<div *ngIf="showModal" class="modal-backdrop" (click)="showModal = false;">
+</div>
+<app-subject-modal *ngIf="showModal" [subject]="selectedSubject"
+    (formSubmitted)="onFormSubmitted()"></app-subject-modal>
+
+<div *ngIf="showDetailsModal" class="modal-backdrop" (click)="showDetailsModal = false;"></div>
+<app-news *ngIf="showDetailsModal" [subject]="hoveredSubject" (closeEmitter)="hideDetails()"></app-news>

@@ -1,0 +1,4 @@
+<div class="modal-subject col-6">
+    <h5>{{ subject ? 'Editar Assunto' : 'Criar Assunto' }}</h5>
+    <app-subject-form [subject]="subject" (formSubmitted)="onFormSubmitted()"></app-subject-form>
+</div>
