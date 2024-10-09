@@ -29,3 +29,6 @@ Separar os fetchs da GdeltService pela API que são chamadas
 # DTO
 Poderia explorar mais o ApiProperty colocando exemplos, tipo etc
 Usar o class-validator
+
+# Usar Serviços do Nest
+Usar o HttpService no lugar do Axios diretamente
