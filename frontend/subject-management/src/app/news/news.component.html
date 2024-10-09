@@ -8,7 +8,7 @@
         <div class="col100 card">
             <ul class="links list-group list-group-flush">
                 <li *ngFor="let item of subject.links" class="list-group-item">
-                    <a href="#" (click)="showNews(item)" class="card-link">{{ item }}</a>
+                    <div (click)="showNews(item)" class="card-link">{{ item }}</div>
                 </li>
             </ul>
 
@@ -18,7 +18,4 @@
         <p>Nenhum link foi encontrado.</p>
     </ng-template>
     <button (click)="close()" class="btn btn-dark">Fechar</button>
-    <div *ngIf="selectedLink" [ngClass]="{'iframe': selectedLink}">
-        <iframe [src]="selectedLink" width="100%" height="400px"></iframe>
-    </div>
 </div>

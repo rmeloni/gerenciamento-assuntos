@@ -1,4 +1,5 @@
-<div class="row d-flex align-items-center justify-content-center" style="width: 100%;">
-  <app-dashboard [ngClass]="'col-10'"></app-dashboard>
+<div class="container-app row d-flex align-items-center justify-content-center">
+  <div [ngClass]="'p-0'">
+    <router-outlet />
+  </div>
 </div>
-<router-outlet />

@@ -5,11 +5,9 @@ import { SubjectController } from './modules/subjects/presentation/controllers/s
 import { ConfigModule } from '@nestjs/config';
 import { SubjectService } from './modules/subjects/application/services/subject/subject.service';
 import { SubjectRepository } from './modules/subjects/infrastructure/repository/subject.repository';
-import { LinksModule } from './modules/links/links.module';
 import { LinkService } from './modules/links/application/services/link/link.service';
 import { LinkRepository } from './modules/links/infrastructure/repository/link.repository';
 import { Link } from './modules/links/domain/entities/link.entity';
-import { LinkController } from './modules/links/presentation/controllers/link/link.controller';
 import { GdeltService } from './modules/subjects/infrastructure/api/gdelt.service';
 
 @Module({

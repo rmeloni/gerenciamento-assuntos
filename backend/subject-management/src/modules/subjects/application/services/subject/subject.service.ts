@@ -58,7 +58,7 @@ export class SubjectService implements ISubjectService {
 
   private async fetchLinksAndInsertLinks(subject: Subject, keywords: string): Promise<void> {
     const responseApi = await this.gdeltService.fetchLinks(keywords);
-    this.linkRepository.createBook(this.mapToListEntityLink(subject, this.stringResultToList(responseApi)));
+    this.linkRepository.createBook(this.mapToListEntityLink(subject, responseApi));
   }
 
   private mapToDto(subject: Subject): SubjectDto {
@@ -82,16 +82,12 @@ export class SubjectService implements ISubjectService {
 
   private mapToListEntityLink(subject: Subject, linksData: string[]): Link[] {
     const links: Link[] = [];
-    linksData.forEach(linkItem => {
-      if (linkItem)
-        links.push(this.mapToEntityLink(subject, linkItem))
-    })
-    return links;
-  }
-
-  private stringResultToList(urls: string): string[] {
-    const lines = urls.trim().split('\n');
-    const links = lines.map(line => line.split(',')[2]).filter(link => link && link.includes('http'));
+    if (Array.isArray(linksData)) {
+      linksData.forEach(linkItem => {
+        if (linkItem)
+          links.push(this.mapToEntityLink(subject, linkItem))
+      })
+    }
     return links;
   }
 }

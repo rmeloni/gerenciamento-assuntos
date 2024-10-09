@@ -17,7 +17,6 @@
             <td>{{ subject.title }}</td>
             <td>{{ subject.keywords }}</td>
             <td>
-                <!-- {{ subject.status }} -->
                 <select class="custom-select form-control" [(ngModel)]="subject.status"
                     (change)="updateStatus(subject); $event.stopPropagation()">
                     <option value="Pendente">Pendente</option>
@@ -27,7 +26,7 @@
             </td>
             <td class="d-flex flex-row justify-content-between">
                 <button (click)="editSubject(subject); $event.stopPropagation()"
-                    class="btn btn-secondary">Editar</button>
+                    [disabled]="subject.status === 'Concluído'" class="btn btn-secondary">Editar</button>
                 <button (click)="deleteSubject(subject.id); $event.stopPropagation()"
                     class="btn btn-danger">Deletar</button>
             </td>
